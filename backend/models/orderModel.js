@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 
 const orderSchema = new mongoose.Schema({
-   userId:{type:String , required : true},
+   userId:{type:mongoose.Schema.Types.ObjectId , required : true , ref:'User'},
    items:{type:Array , required : true},
    amount:{type:Number , required : true},
    address:{type:Object , required : true},
@@ -11,6 +11,17 @@ const orderSchema = new mongoose.Schema({
    date:{type:Number , required : true}
 
 })
+
+
+
+// const mongoose = require('mongoose');
+
+// const orderSchema = new mongoose.Schema({
+//   userId: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User' },
+//   // other fields
+// });
+
+// module.exports = mongoose.model('Order', orderSchema);
 
 const orderModel = mongoose.models.order || mongoose.model('order',orderSchema)
 export default orderModel;

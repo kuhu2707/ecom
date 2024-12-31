@@ -2,6 +2,9 @@ import { createContext, useEffect, useState } from "react";
 import axios from 'axios'
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { products } from "../assets/assets";
+
+  
 
 
 export const ShopContext = createContext();
@@ -48,7 +51,7 @@ const ShopContextProvider=(props)=>{
             await axios.post('http://localhost:4000/api/cart/add',{itemId , size} , {headers:{token}})
             
         } catch (error) {
-            console.log(error);
+            console.log(error)
             toast.error(error.message)
             
         }

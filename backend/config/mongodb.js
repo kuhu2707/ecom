@@ -6,6 +6,7 @@ const connectDB = async()=>{
         console.log('DB CONNECTED')
     })
     
+    mongoose.set("strictQuery",true);
    await mongoose.connect(`${process.env.MONGODB_URI}/e-commerce`)
 }
 

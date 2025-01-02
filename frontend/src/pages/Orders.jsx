@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { ShopContext } from '../context/ShopContext'
 import Title from '../components/Title';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const Orders = () => {
 
-  const {token , currency}=useContext(ShopContext);
+  const {token , currency }=useContext(ShopContext);
 
   const [orderData , setorderData] = useState([])
 
@@ -16,9 +18,10 @@ const Orders = () => {
         return null
       }
       const response = await axios.post('http://localhost:4000/api/order/userorders' , {} , {headers:{token}})
+       
       if(response.data.success){
-        let allOrdersItem = []
-        response.data.orders.map((order)=>{
+        const allOrdersItem = []
+        response.data.orders.flatMap((order)=>{
            order.items.map((item)=>{
             item['status']=order.status
             item['payment']=order.payment
@@ -34,7 +37,8 @@ const Orders = () => {
 
     
     } catch (error) {
-      
+      console.log(error)
+      toast.error(response.message)
     }
 
 

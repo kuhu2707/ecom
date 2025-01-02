@@ -8,7 +8,7 @@ const Newsletter = () => {
 
   return (
     <div className='text-center'>
-      <p className='text=-2xl font-medium text-gray-800'>Subcribe now and get 20% off</p>
+      <p className='text-2xl font-medium text-gray-800'>Subcribe now and get 20% off</p>
       <p className='text-gray-400 mt-3'>
       Lorem Ipsum, is simply dummy text of the printing and typesetting industry.
       </p>

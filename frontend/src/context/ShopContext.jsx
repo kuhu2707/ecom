@@ -2,9 +2,6 @@ import { createContext, useEffect, useState } from "react";
 import axios from 'axios'
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { products } from "../assets/assets";
-
-  
 
 
 export const ShopContext = createContext();
@@ -14,7 +11,7 @@ const ShopContextProvider=(props)=>{
     const currency ='Rs.';
     const delivery_fee = 10;
     const backendUrl = import.meta.env.VITE_BACKEND_URL
-    const[search , setSearch] = useState('');
+    const[search , setSearch] = useState(''); 
     const[showSearch,setShowSearch] = useState(false);
     const [cartItems,setCartItems] = useState({});
     const [products,setProducts] = useState([]);
@@ -79,7 +76,7 @@ const ShopContextProvider=(props)=>{
     const updateQuantity = async(itemId,size,quantity)=>{
         let cartData = structuredClone(cartItems);
         cartData[itemId][size] = quantity;
-        setCartItems(cartData)
+        setCartItems(cartData);
 
         if (token) {
             try {
@@ -91,7 +88,7 @@ const ShopContextProvider=(props)=>{
         }   
 }
 
-    const getCartAmount = ()=>{
+    const getCartAmount = () => {
         let totalAmount =0;
         for(const items in cartItems){
             let itemInfo = products.find((product)=> product._id === items);
@@ -111,7 +108,7 @@ const ShopContextProvider=(props)=>{
   const getProductsData = async()=>{
     try {
         
-       const response = await axios.get('http://localhost:4000/api/product/list')
+       const response = await axios.get( 'http://localhost:4000/api/product/list')
         console.log(response.data);
          
        if(response.data.success){
@@ -131,7 +128,7 @@ const ShopContextProvider=(props)=>{
 
   const getUserCart= async(token)=>{
     try {
-        const response = await axios.post('http://localhost:4000/api/cart/get',{},{headers:{token}})
+        const response = await axios.post(  'http://localhost:4000/api/cart/get',{},{headers:{token}})
         if (response.data.success) {
             setCartItems(response.data.cartData)
         }

@@ -39,6 +39,8 @@ const PlaceOrder = () => {
     setFormData(data => ({...data, [name]: value }))
   };
 
+
+
   const onSubmitHandler = async (event) => {
     event.preventDefault()
     try {
@@ -70,9 +72,13 @@ const PlaceOrder = () => {
             orderData,
             { headers: { token } }
           );
+          console.log(response.data)
           if (response.data.success) {
-            setCartItems({})
+            
+            setCartItems({});
             navigate("/order")
+            // <button onClick={() => navigate("/order")}>Test Navigation</button>
+
           } else {
             toast.error(response.data.message)
           }
@@ -245,7 +251,7 @@ const PlaceOrder = () => {
           </div>
 
           <div className="w-full text-end mt-8">
-            <button
+            <button //onClick={()=>navigate('/order')}
               type="submit"
               className="bg-black text-white px-16 py-3 text-sm">
               PLACE ORDER
